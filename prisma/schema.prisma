@@ -7,7 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Project {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String    @db.ObjectId
+  name      String?
+  timer     Float?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("projects")
+}
 
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -47,6 +58,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Projects      Project[]
 
   @@map("users")
 }

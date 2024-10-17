@@ -56,10 +56,7 @@ export function Header() {
           {status === "loading" && (
             <>
               <div className="flex pr-4 lg:pr-0 items-center cursor-pointer duration-300 ease-in-out">
-                <AiOutlineLoading
-                  className="animate-spin duration-1000"
-                  size={32}
-                />
+                <AiOutlineLoading className="animate-spin" size={32} />
               </div>
             </>
           )}
