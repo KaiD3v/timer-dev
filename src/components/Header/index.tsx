@@ -2,7 +2,9 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { AiOutlineLoading } from "react-icons/ai";
 import { BiExit } from "react-icons/bi";
+import { IoEnterOutline } from "react-icons/io5";
 import { MdDashboardCustomize } from "react-icons/md";
 
 export function Header() {
@@ -26,22 +28,41 @@ export function Header() {
           </Link>
         </div>
         <div className="flex items-center justify-center gap-4">
-          <div className="flex items-end cursor-pointer">
-            <button onClick={handleLogin}>Entrar</button>
-          </div>
-          <div className="flex items-end cursor-pointer">
-            <MdDashboardCustomize size={32} />
-            <Link
-              className="text-lg font-semibold  hover:tracking-widest duration-300"
-              href={"/dashboard"}
-            >
-              Dashboard
-            </Link>
-          </div>
-          <div className="flex pr-4 lg:pr-0 items-end cursor-pointer hover:text-red-600 duration-300 ease-in-out">
-            <BiExit size={32} />
-            <button onClick={handleExit}>Sair</button>
-          </div>
+          {status === "authenticated" && (
+            <>
+              <div className="flex items-end cursor-pointer">
+                <MdDashboardCustomize size={32} />
+                <Link
+                  className="text-lg font-semibold  hover:tracking-widest duration-300"
+                  href={"/dashboard"}
+                >
+                  Dashboard
+                </Link>
+              </div>
+              <div className="flex pr-4 lg:pr-0 items-end cursor-pointer hover:text-red-600 duration-300 ease-in-out">
+                <BiExit size={32} />
+                <button onClick={handleExit}>Sair</button>
+              </div>
+            </>
+          )}
+          {status === "unauthenticated" && (
+            <>
+              <div className="flex pr-4 lg:pr-0 items-end cursor-pointer hover:text-green-600 duration-300 ease-in-out">
+                <IoEnterOutline size={32} />
+                <button onClick={handleLogin}>Entrar</button>
+              </div>
+            </>
+          )}
+          {status === "loading" && (
+            <>
+              <div className="flex pr-4 lg:pr-0 items-center cursor-pointer duration-300 ease-in-out">
+                <AiOutlineLoading
+                  className="animate-spin duration-1000"
+                  size={32}
+                />
+              </div>
+            </>
+          )}
         </div>
       </section>
     </header>
