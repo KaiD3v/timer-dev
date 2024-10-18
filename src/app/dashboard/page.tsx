@@ -3,6 +3,9 @@ import { authOptions } from "../../lib/auth";
 import { redirect } from "next/navigation";
 
 import prismaClient from "@/lib/prisma";
+import { DashboardCard } from "./components/Card";
+import Link from "next/link";
+import { ProjectProps } from "../../utils/project.type";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -11,7 +14,7 @@ export default async function Dashboard() {
     redirect("/");
   }
 
-  const projects = await prismaClient.project.findMany({
+  const projects: ProjectProps[] = await prismaClient.project.findMany({
     where: { userId: session.user.id },
   });
 
@@ -24,8 +27,8 @@ export default async function Dashboard() {
         </button>
       </header>
       <section>
-        
+       <DashboardCard />
       </section>
-    </main> 
+    </main>
   );
 }
