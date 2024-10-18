@@ -2,6 +2,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import { redirect } from "next/navigation";
 
+import prismaClient from "@/lib/prisma";
+
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
 
@@ -9,5 +11,21 @@ export default async function Dashboard() {
     redirect("/");
   }
 
-  return <main>TESTE</main>;
+  const projects = await prismaClient.project.findMany({
+    where: { userId: session.user.id },
+  });
+
+  return (
+    <main className="flex flex-col">
+      <header className="flex justify-between pt-2">
+        <h1 className="text-2xl font-semibold">Projetos</h1>
+        <button className="bg-blue-500 text-white font-semibold hover:bg-blue-500/80 ease-in duration-100 shadow-2xl py-1 px-6 rounded">
+          Adicionar
+        </button>
+      </header>
+      <section>
+        
+      </section>
+    </main> 
+  );
 }

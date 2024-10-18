@@ -33,7 +33,7 @@ export function DashboardHeader() {
         </ul>
       </nav>
       <section className="flex justify-center items-center mr-3">
-        <div className="bg-blue-600 p-1 rounded cursor-pointer hover:bg-gray-700/80 ease-in duration-300 shadow-2xl">
+        <div className="bg-cyan-500 p-1 rounded cursor-pointer hover:bg-cyan-400/60 ease-in duration-100 shadow-2xl">
           <FiPlus color="#ffff" size={28} />
         </div>
       </section>
