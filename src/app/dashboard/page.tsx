@@ -26,8 +26,11 @@ export default async function Dashboard() {
           Adicionar
         </button>
       </header>
-      <section>
-       <DashboardCard />
+      <section className="grid grid-cols-1 gap-5 mt-5 sm:grid-cols-2 md:grid-cols-3">
+        <DashboardCard />
+        <DashboardCard />
+        <DashboardCard />
+        <DashboardCard />
       </section>
     </main>
   );
