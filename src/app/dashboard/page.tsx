@@ -26,7 +26,7 @@ export default async function Dashboard() {
           Adicionar
         </button>
       </header>
-      <section className="grid grid-cols-1 gap-5 mt-5 sm:grid-cols-2 md:grid-cols-3">
+      <section className="grid grid-cols-1 justify-items-center gap-5 mt-5 sm:justify-items-stretch sm:grid-cols-2 md:grid-cols-3">
         <DashboardCard />
         <DashboardCard />
         <DashboardCard />
