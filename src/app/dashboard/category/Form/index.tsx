@@ -25,7 +25,7 @@ export function NewCategoryForm() {
         name: data.name,
       });
 
-      router.replace('/dashboard')
+      router.replace("/dashboard");
     } catch (error) {
       console.log(error);
     }
