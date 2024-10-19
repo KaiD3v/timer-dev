@@ -25,10 +25,8 @@ export function NewCategoryForm() {
         name: data.name,
       });
 
+      router.replace("/dashboard");
       router.refresh();
-      setInterval(() => {
-        router.replace("/dashboard");
-      }, 500);
     } catch (error) {
       console.log(error);
     }
