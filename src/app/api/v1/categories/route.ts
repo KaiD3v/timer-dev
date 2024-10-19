@@ -3,17 +3,23 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../lib/auth";
 import { NextResponse } from "next/server";
 
-export default async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
   if (!session || !session.user) {
     return NextResponse.json({ error: "Unauthorized " }, { status: 401 });
   }
 
-  const { name, projects } = await request.json();
+  const { name } = await request.json();
+  if (!name) {
+    return NextResponse.json(
+      { error: "O nome da categoria é obrigátorio" },
+      { status: 400 }
+    );
+  }
 
   try {
     await prismaClient.category.create({
-      data: { name: name, projects: projects, userId: session?.user.id },
+      data: { name: name, userId: session?.user.id },
     });
 
     return NextResponse.json(
