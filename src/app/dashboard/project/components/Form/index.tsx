@@ -4,6 +4,7 @@ import { z } from "zod";
 import { api } from "../../../../../lib/api";
 import { CategoryProps } from "../../../../../utils/category.props";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
   name: z.string().min(1, "O nome é obrigatório!"),
@@ -17,6 +18,7 @@ interface CategoryFormProps {
 }
 
 export function NewProjectForm({ categories }: CategoryFormProps) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -28,6 +30,8 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
       name: data.name,
       category: data.category,
     });
+
+    router.replace(`/dashboard/category/${data.category}`);
   }
 
   return (
@@ -53,8 +57,12 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
             type="text"
             placeholder="Digite o nome do seu projeto"
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            {...register("name")}
             required
           />
+          {errors.name && (
+            <span className="text-red-500 text-sm">{errors.name.message}</span>
+          )}
         </div>
         <div>
           <label htmlFor="category" className="block font-semibold text-sm">
@@ -63,7 +71,10 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
           {categories.length === 0 && (
             <p>
               Nenhuma categoria encontrada,{" "}
-              <Link className="text-blue-600 hover:underline" href="/">
+              <Link
+                className="text-blue-600 hover:underline"
+                href="/categories"
+              >
                 cadastre uma.
               </Link>
             </p>
@@ -71,13 +82,19 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
           {categories.length > 0 && (
             <select
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              name=""
-              id=""
+              {...register("category")}
             >
               {categories.map((category) => (
-                <option key={category.id}>{category.name}</option>
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
               ))}
             </select>
+          )}
+          {errors.category && (
+            <span className="text-red-500 text-sm">
+              {errors.category.message}
+            </span>
           )}
         </div>
         <button

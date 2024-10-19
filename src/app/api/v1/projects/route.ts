@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
   try {
     await prismaClient.project.create({
-      data: { name: name, userId: session.user.id, category },
+      data: { name: name, userId: session.user.id, categoryId: category },
     });
 
     return NextResponse.json(
@@ -27,6 +27,7 @@ export async function POST(request: Request) {
       { status: 201 }
     );
   } catch (error) {
+    console.error("Error while creating project:", error);
     return NextResponse.json(
       { error: "Error while register new customer" },
       { status: 501 }
