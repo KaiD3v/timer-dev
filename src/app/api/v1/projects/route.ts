@@ -9,11 +9,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized " }, { status: 401 });
   }
 
-  const { name } = await request.json;
+  const { name, category } = await request.json();
+  if (!name || !category) {
+    return NextResponse.json(
+      { error: "Categoria e nome são obrigatórios!" },
+      { status: 400 }
+    );
+  }
 
   try {
     await prismaClient.project.create({
-      data: { name: name, userId: session.user.id },
+      data: { name: name, userId: session.user.id, category },
     });
 
     return NextResponse.json(
