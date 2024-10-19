@@ -17,7 +17,10 @@ export async function DashboardHeader() {
           <ul className="flex font-semibold text-white gap-6">
             {categories.map((category) => (
               <li key={category.id}>
-                <Link href={`/dashboard/category/${category.id}`}>
+                <Link
+                  className="relative underline-animation"
+                  href={`/dashboard/category/${category.id}`}
+                >
                   {category.name}
                 </Link>
               </li>
@@ -33,7 +36,9 @@ export async function DashboardHeader() {
       </nav>
       <section className="flex justify-center items-center mr-3">
         <div className="bg-cyan-500 p-1 rounded cursor-pointer hover:bg-cyan-400/60 ease-in duration-100 shadow-2xl">
-          <FiPlus color="#ffff" size={28} />
+          <Link href="/dashboard/category/new">
+            <FiPlus color="#ffff" size={28} />
+          </Link>
         </div>
       </section>
     </header>
