@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { api } from "../../../../lib/api";
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
   name: z.string().min(1, "O nome é obrigatório!"),
@@ -11,6 +12,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function NewCategoryForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -23,7 +25,7 @@ export function NewCategoryForm() {
         name: data.name,
       });
 
-      console.log(response.data);
+      router.replace('/dashboard')
     } catch (error) {
       console.log(error);
     }
