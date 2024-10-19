@@ -31,6 +31,7 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
       category: data.category,
     });
 
+    router.refresh();
     router.replace(`/dashboard/category/${data.category}`);
   }
 
