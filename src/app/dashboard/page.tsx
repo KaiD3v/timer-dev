@@ -22,9 +22,12 @@ export default async function Dashboard() {
     <main className="flex flex-col">
       <header className="flex justify-between pt-2">
         <h1 className="text-2xl font-semibold">Projetos</h1>
-        <button className="bg-blue-500 text-white font-semibold hover:bg-blue-500/80 ease-in duration-100 shadow-2xl py-1 px-6 rounded">
+        <Link
+          href={"/dashboard/project/new"}
+          className="bg-blue-500 text-white font-semibold hover:bg-blue-500/80 ease-in duration-100 shadow-2xl py-1 px-6 rounded"
+        >
           Adicionar
-        </button>
+        </Link>
       </header>
       <section className="grid grid-cols-1 justify-items-center gap-5 mt-5 sm:justify-items-stretch sm:grid-cols-2 md:grid-cols-3">
         <DashboardCard />
