@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../lib/auth";
 import { redirect } from "next/navigation";
-import { NewCategoryForm } from "../Form";
+import { NewCategoryForm } from "../components/Form";
 
 export default async function NewCategoryPage() {
   const session = await getServerSession(authOptions);
