@@ -41,8 +41,8 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Unauthorized " }, { status: 401 });
   }
 
-  const { projectId, timer } = await request.json();
-  if (!timer || !projectId) {
+  const { id, timer } = await request.json();
+  if (!timer || !id) {
     return NextResponse.json(
       { error: "É obrigatório fornecer o tempo atualizado!" },
       { status: 400 }
@@ -51,9 +51,14 @@ export async function PATCH(request: Request) {
 
   try {
     await prismaClient.project.update({
-      where: { id: projectId },
+      where: { id },
       data: { timer },
     });
+
+    return NextResponse.json(
+      { message: "Projeto atualizado com sucesso!" },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Error while patch project timer:", error);
     return NextResponse.json(

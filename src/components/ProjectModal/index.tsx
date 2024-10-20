@@ -5,6 +5,8 @@ import { ModalContext } from "../../providers/modal";
 import { FaTimes } from "react-icons/fa";
 import { formatTime } from "../../functions/formatTime";
 import { BiCheck } from "react-icons/bi";
+import { api } from "../../lib/api";
+import { ProjectProps } from "../../utils/project.type";
 
 export function ProjectModal() {
   const { handleModalVisible, project } = useContext(ModalContext);
@@ -12,6 +14,23 @@ export function ProjectModal() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // useEffect(() => {
+  //   const fetchProjectTimer = async () => {
+  //     try {
+  //       const response = await api.get(`/api/v1/projects`, {
+  //         params: { projectId: project?.id },
+  //       });
+  //       setTime(response.data.timer || 0);
+  //     } catch (error) {
+  //       console.error("Erro ao buscar o tempo do projeto:", error);
+  //     }
+
+  //     if (project?.id) {
+  //       fetchProjectTimer();
+  //     }
+  //   };
+  // }, [project?.id]);
 
   useEffect(() => {
     if (isRunning) {
@@ -35,6 +54,25 @@ export function ProjectModal() {
     setIsRunning(false);
     setTime(0);
   };
+
+  async function handleSubmitNewTimerValue() {
+    try {
+      const response = await api.get(`/api/v1/projects`, {
+        params: { projectId: project?.id },
+      });
+
+      let updatedTime: ProjectProps = response.data;
+
+      await api.patch("/api/v1/projects", {
+        id: project?.id,
+        timer: (updatedTime.timer as number) + time,
+      });
+
+      return;
+    } catch (error) {
+      console.error("Erro ao buscar o tempo do projeto:", error);
+    }
+  }
 
   return (
     <section className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -77,7 +115,10 @@ export function ProjectModal() {
                 Iniciar
               </button>
             )}
-            <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition">
+            <button
+              onClick={handleSubmitNewTimerValue}
+              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition"
+            >
               <BiCheck size={24} />
             </button>
           </div>
