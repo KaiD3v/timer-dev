@@ -15,23 +15,6 @@ export function ProjectModal() {
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // useEffect(() => {
-  //   const fetchProjectTimer = async () => {
-  //     try {
-  //       const response = await api.get(`/api/v1/projects`, {
-  //         params: { projectId: project?.id },
-  //       });
-  //       setTime(response.data.timer || 0);
-  //     } catch (error) {
-  //       console.error("Erro ao buscar o tempo do projeto:", error);
-  //     }
-
-  //     if (project?.id) {
-  //       fetchProjectTimer();
-  //     }
-  //   };
-  // }, [project?.id]);
-
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
