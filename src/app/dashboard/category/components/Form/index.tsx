@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { api } from "../../../../lib/api";
+import { api } from "../../../../../lib/api";
 import { useRouter } from "next/navigation";
 
 const schema = z.object({
