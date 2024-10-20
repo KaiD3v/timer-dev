@@ -4,6 +4,7 @@
 
 
   /* scrollbar */
+.scroll-bar {
   ::-webkit-scrollbar {
     width: 12px;
   }
@@ -21,6 +22,7 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #0099ff;
   }
+}
 
 .underline-animation {
     position: relative;
