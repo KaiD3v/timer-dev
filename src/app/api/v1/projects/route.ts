@@ -64,7 +64,9 @@ export async function PATCH(request: Request) {
 }
 
 export async function GET(request: Request) {
-  const { projectId } = await request.json();
+  const { searchParams } = new URL(request.url);
+  const projectId = searchParams.get("projectId");
+
   if (!projectId) {
     return NextResponse.json(
       { error: "É obrigatório fornecer o id do projeto!" },
@@ -77,11 +79,19 @@ export async function GET(request: Request) {
       where: { id: projectId },
     });
 
+    if (!project) {
+      return NextResponse.json(
+        { error: "Projeto não encontrado!" },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json(project);
   } catch (error) {
+    console.error("Erro ao buscar projeto:", error);
     return NextResponse.json(
-      { error: "Error while get project" },
-      { status: 400 }
+      { error: "Erro interno do servidor" },
+      { status: 500 }
     );
   }
 }
