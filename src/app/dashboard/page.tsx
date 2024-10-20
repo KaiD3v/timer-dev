@@ -3,9 +3,7 @@ import { authOptions } from "../../lib/auth";
 import { redirect } from "next/navigation";
 
 import prismaClient from "@/lib/prisma";
-import { DashboardCard } from "./components/Card";
-import Link from "next/link";
-import { ProjectProps } from "../../utils/project.type";
+import { CategoryCard } from "./components/CategoryCard";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -14,14 +12,32 @@ export default async function Dashboard() {
     redirect("/");
   }
 
-  const projects: ProjectProps[] = await prismaClient.project.findMany({
+  const categories = await prismaClient.category.findMany({
     where: { userId: session.user.id },
+    orderBy: { updatedAt: "desc" },
+    include: { projects: true },
+  });
+
+  const categoriesWithTotalHours = categories.map((category) => {
+    const totalHours = category.projects.reduce((sum, project) => {
+      const projectHours = project.timer ? Number(project.timer) : 0;
+      return sum + projectHours;
+    }, 0);
+
+    return { ...category, totalHours };
   });
 
   return (
     <main className="flex flex-col">
       <section className="grid grid-cols-1 justify-items-center gap-5 mt-5 sm:justify-items-stretch sm:grid-cols-2 md:grid-cols-3">
-       
+        {categories.length > 0 &&
+          categoriesWithTotalHours.map((category) => (
+            <CategoryCard
+              key={category.id}
+              totalHours={category.totalHours}
+              category={category}
+            />
+          ))}
       </section>
     </main>
   );

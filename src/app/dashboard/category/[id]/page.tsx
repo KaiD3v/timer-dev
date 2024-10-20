@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../lib/auth";
 import { redirect } from "next/navigation";
 import { DashboardCard } from "../../components/Card";
+import Link from "next/link";
 
 export default async function CategoryPage({
   params: { id },
@@ -13,7 +14,6 @@ export default async function CategoryPage({
 
   if (!session || !session.user?.id) {
     redirect("/");
-    return null;
   }
 
   const projectAuthor = await prismaClient.user.findUnique({
@@ -22,7 +22,6 @@ export default async function CategoryPage({
 
   if (!projectAuthor) {
     redirect("/");
-    return null;
   }
 
   const categoryProjects = await prismaClient.project.findMany({
@@ -38,6 +37,17 @@ export default async function CategoryPage({
             <DashboardCard project={project} />
           ))}
       </section>
+      {categoryProjects.length === 0 && (
+        <p>
+          Você ainda não possui nenhum projeto nesta categoria,{" "}
+          <Link
+            className="text-blue-600 hover:underline"
+            href={"/dashboard/project/new"}
+          >
+            clique aqui para adicionar
+          </Link>
+        </p>
+      )}
     </main>
   );
 }
