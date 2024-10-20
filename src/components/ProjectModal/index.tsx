@@ -3,9 +3,10 @@
 import { useContext } from "react";
 import { ModalContext } from "../../providers/modal";
 import { FaTimes } from "react-icons/fa"; // Importando ícone de fechar
+import { api } from "../../lib/api";
 
 export function ProjectModal() {
-  const { handleModalVisible, project } = useContext(ModalContext);
+  const { handleModalVisible, project } = useContext(ModalContext); 
 
   return (
     <section className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
