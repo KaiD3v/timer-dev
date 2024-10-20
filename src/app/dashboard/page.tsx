@@ -29,7 +29,7 @@ export default async function Dashboard() {
 
   return (
     <main className="flex flex-col">
-      <section className="grid grid-cols-1 justify-items-center gap-5 mt-5 sm:justify-items-stretch sm:grid-cols-2 md:grid-cols-3">
+      <section className="flex flex-col items-center justify-center sm:mx-0 sm:grid gap-5 mt-5 sm:justify-items-stretch sm:grid-cols-2 md:grid-cols-3">
         {categories.length > 0 &&
           categoriesWithTotalHours.map((category) => (
             <CategoryCard
