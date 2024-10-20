@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+
+  /* scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0099ff; 
+    border-radius: 10px; 
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #0099ff; 
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0099ff;
+  }
+
 .underline-animation {
     position: relative;
     display: inline-block;
@@ -23,4 +43,9 @@
   .underline-animation:hover::after {
     width: 100%;
   }
+
+
+
+
+
   

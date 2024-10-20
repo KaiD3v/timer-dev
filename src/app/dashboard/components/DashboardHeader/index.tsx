@@ -11,10 +11,10 @@ export async function DashboardHeader() {
     where: { userId: session?.user.id },
   });
   return (
-    <header className="flex justify-between h-14 bg-blue-500 mt-10 rounded shadow-2xlg">
-      <nav className="flex justify-center items-center ml-3">
+    <header className="flex justify-between pt-2 h-14 bg-blue-500 mt-10 rounded shadow-2xlg">
+      <nav className="flex justify-center items-center ml-3 overflow-hidden">
         {categories.length > 0 && (
-          <ul className="flex font-semibold text-white gap-6">
+          <ul className="flex font-semibold overflow-auto max-w-full text-white gap-6">
             {categories.map((category) => (
               <li key={category.id}>
                 <Link
