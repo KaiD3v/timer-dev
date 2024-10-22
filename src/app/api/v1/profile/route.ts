@@ -18,8 +18,26 @@ export async function PATCH(request: Request) {
   }
 
   try {
+    let existingProfile = await prismaClient.profile.findUnique({
+      where: { userId: session.user.id },
+    });
+
+    if (!existingProfile) {
+      existingProfile = await prismaClient.profile.create({
+        data: {
+          userId: session.user.id,
+          description,
+        },
+      });
+
+      return NextResponse.json(
+        { message: "Perfil criado com sucesso!", profile: existingProfile },
+        { status: 201 }
+      );
+    }
+
     await prismaClient.profile.update({
-      where: { userId: session?.user?.id },
+      where: { userId: session.user.id },
       data: { description },
     });
 
@@ -28,10 +46,10 @@ export async function PATCH(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error while patch project timer:", error);
+    console.error("Erro ao atualizar o perfil:", error);
     return NextResponse.json(
-      { error: "Error while register new project" },
-      { status: 501 }
+      { error: "Erro ao atualizar o perfil." },
+      { status: 500 }
     );
   }
 }
