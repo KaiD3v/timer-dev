@@ -27,7 +27,6 @@ export default async function CategoryPage({
   const categoryProjects = await prismaClient.project.findMany({
     where: { userId: session.user.id, categoryId: id },
   });
-  console.log(categoryProjects);
 
   return (
     <main className="flex flex-col">
