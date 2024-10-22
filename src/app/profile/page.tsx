@@ -40,12 +40,14 @@ export default async function ProfilePrivatePage() {
           className="rounded-full border-4 border-blue-400"
         />
         <div>
-          <h1 className="text-3xl font-bold">{session?.user?.name}</h1>
+          <h1 className="text-xl sm:text-3xl font-bold">
+            {session?.user?.name}
+          </h1>
           <div className="flex justify-between items-center">
             <p className="text-gray-600 mt-2">
               {userProfile?.description || "Sem Descrição..."}
             </p>
-            <BiEdit className="cursor-pointer hover:text-green-500" size={26}/>
+            <BiEdit className="cursor-pointer hover:text-green-500" size={26} />
           </div>
         </div>
       </article>
@@ -73,7 +75,7 @@ export default async function ProfilePrivatePage() {
         </div>
       </section>
 
-      <section className="bg-white p-8 rounded-lg shadow-md max-h-full">
+      <section className="bg-white p-8 rounded-lg overflow-auto shadow-md max-h-full">
         <h1 className="text-2xl font-bold mb-4">Projetos</h1>
         {userProjects.length > 0 ? (
           <table className="w-full text-left border-collapse">
@@ -88,7 +90,7 @@ export default async function ProfilePrivatePage() {
                 <th className="p-3 text-sm font-semibold text-gray-700">
                   Tempo Dedicado
                 </th>
-                <th className="p-3 text-sm font-semibold text-gray-700">
+                <th className="p-3 hidden sm:block  text-sm font-semibold text-gray-700">
                   Atualizado
                 </th>
               </tr>
@@ -103,10 +105,10 @@ export default async function ProfilePrivatePage() {
                   <td className="p-3 text-sm">
                     {project.category?.name || "Sem Categoria"}
                   </td>
-                  <td className="p-3 text-sm">
+                  <td className="p-3  text-sm">
                     {formatTime(project.timer || 0)}
                   </td>
-                  <td className="p-3 text-sm">
+                  <td className="p-3 text-sm hidden sm:block">
                     {new Date(project.updatedAt).toLocaleDateString()}
                   </td>
                 </tr>
