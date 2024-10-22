@@ -74,7 +74,7 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
               Nenhuma categoria encontrada,{" "}
               <Link
                 className="text-blue-600 hover:underline"
-                href="/categories"
+                href="/dashboard/category/new"
               >
                 cadastre uma.
               </Link>
