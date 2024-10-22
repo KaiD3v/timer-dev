@@ -7,6 +7,9 @@ import { formatTime } from "../../functions/formatTime";
 import { BiEdit } from "react-icons/bi";
 import { ProfileDescription } from "./components/ProfileDescription";
 import { ProfileProps } from "../../utils/profile.type";
+import { FaShare } from "react-icons/fa";
+import { FaShareFromSquare } from "react-icons/fa6";
+import { ShareComponent } from "./components/Share";
 
 export default async function ProfilePrivatePage() {
   const session = await getServerSession(authOptions);
@@ -42,8 +45,9 @@ export default async function ProfilePrivatePage() {
           className="rounded-full border-4 border-blue-400"
         />
         <div>
-          <h1 className="text-xl sm:text-3xl font-bold">
-            {session?.user?.name}
+          <h1 className="flex items-center justify-between text-xl sm:text-3xl font-bold">
+            <span>{session?.user?.name}</span>
+            <ShareComponent id={session?.user?.id as string} />
           </h1>
           <ProfileDescription profile={userProfile as ProfileProps} />
         </div>
