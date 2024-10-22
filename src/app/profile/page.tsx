@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import prismaClient from "../../lib/prisma";
 import { formatTime } from "../../functions/formatTime";
 import { BiEdit } from "react-icons/bi";
+import { ProfileDescription } from "./components/ProfileDescription";
+import { ProfileProps } from "../../utils/profile.type";
 
 export default async function ProfilePrivatePage() {
   const session = await getServerSession(authOptions);
@@ -43,12 +45,7 @@ export default async function ProfilePrivatePage() {
           <h1 className="text-xl sm:text-3xl font-bold">
             {session?.user?.name}
           </h1>
-          <div className="flex justify-between items-center">
-            <p className="text-gray-600 mt-2">
-              {userProfile?.description || "Sem Descrição..."}
-            </p>
-            <BiEdit className="cursor-pointer hover:text-green-500" size={26} />
-          </div>
+          <ProfileDescription profile={userProfile as ProfileProps} />
         </div>
       </article>
 
