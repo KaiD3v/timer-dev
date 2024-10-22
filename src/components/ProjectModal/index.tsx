@@ -7,6 +7,8 @@ import { formatTime } from "../../functions/formatTime";
 import { BiCheck } from "react-icons/bi";
 import { api } from "../../lib/api";
 import { ProjectProps } from "../../utils/project.type";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export function ProjectModal() {
   const { handleModalVisible, project } = useContext(ModalContext);
@@ -31,6 +33,8 @@ export function ProjectModal() {
     };
   }, [isRunning, time]);
 
+  const router = useRouter();
+
   const handleStart = () => setIsRunning(true);
   const handlePause = () => setIsRunning(false);
   const handleReset = () => {
@@ -51,7 +55,12 @@ export function ProjectModal() {
         timer: (updatedTime.timer as number) + time,
       });
 
-      return;
+      toast.success(`Parabéns! Você estudou por ${formatTime(time)}`, {
+        style: { background: "lime", color: "white" },
+      });
+
+      handleModalVisible();
+      router.refresh();
     } catch (error) {
       console.error("Erro ao buscar o tempo do projeto:", error);
     }

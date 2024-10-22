@@ -7,8 +7,6 @@ import { formatTime } from "../../functions/formatTime";
 import { BiEdit } from "react-icons/bi";
 import { ProfileDescription } from "./components/ProfileDescription";
 import { ProfileProps } from "../../utils/profile.type";
-import { FaShare } from "react-icons/fa";
-import { FaShareFromSquare } from "react-icons/fa6";
 import { ShareComponent } from "./components/Share";
 
 export default async function ProfilePrivatePage() {

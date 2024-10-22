@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { api } from "../../../../../lib/api";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const schema = z.object({
   name: z.string().min(1, "O nome é obrigatório!"),
@@ -26,8 +27,14 @@ export function NewCategoryForm() {
       });
 
       router.replace("/dashboard");
+      toast.success("Projeto criado com sucesso!", {
+        style: { background: "lime", color: "white" },
+      });
       router.refresh();
     } catch (error) {
+      toast.error(errors.name?.message, {
+        style: { background: "red", color: "white" },
+      });
       console.log(error);
     }
   }

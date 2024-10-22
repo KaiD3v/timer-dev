@@ -5,6 +5,7 @@ import { api } from "../../../../../lib/api";
 import { CategoryProps } from "../../../../../utils/category.props";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const schema = z.object({
   name: z.string().min(1, "O nome é obrigatório!"),
@@ -32,6 +33,7 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
     });
 
     router.refresh();
+    toast.success("Projeto criado com sucesso!", { style: { background: "lime", color: "white" } });
     router.replace(`/dashboard/category/${data.category}`);
   }
 

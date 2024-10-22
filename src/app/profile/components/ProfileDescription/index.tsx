@@ -8,6 +8,7 @@ import { api } from "../../../../lib/api";
 import { useState } from "react";
 import { LuCheckCheck } from "react-icons/lu";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface ProfileDescriptionProps {
   profile: ProfileProps;
@@ -43,9 +44,15 @@ export function ProfileDescription({ profile }: ProfileDescriptionProps) {
         description: data.description,
       });
       handleToggleForm();
+      toast.success("Descrição atualizada com sucesso!", {
+        style: { background: "lime", color: "white" },
+      });
       reset({ description: data.description });
       return router.refresh();
     } catch (error) {
+      toast.error(errors.description?.message as string, {
+        style: { background: "red", color: "white" },
+      });
       console.error("Erro ao atualizar descrição:", error);
     }
   }
