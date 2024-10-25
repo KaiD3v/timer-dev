@@ -12,7 +12,7 @@ export default function Home() {
             Controle seu tempo,{" "}
             <span className="text-blue-600">conquiste seus projetos.</span>
           </h2>
-          <Image src={hero} alt="Hero" />
+          <Image src={hero} alt="Hero" priority />
         </main>
       </Container>
       <Footer />
