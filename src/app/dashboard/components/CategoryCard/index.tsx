@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { formatTime } from "../../../../functions/formatTime";
-import { CategoryProps } from "../../../../utils/category.props";
+import { CategoryProps } from "../../../../utils/category.type";
 
 interface CategoryCardProps {
   category: CategoryProps;

@@ -2,7 +2,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { api } from "../../../../../lib/api";
-import { CategoryProps } from "../../../../../utils/category.props";
+import { CategoryProps } from "../../../../../utils/category.type";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
