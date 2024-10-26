@@ -1,6 +1,6 @@
 # TimerDev
 
-![TimerDev](image-4.png)
+![TimerDev](/public/image-4.png)
 
 **TimerDev** é uma aplicação inovadora que gamifica o processo de estudo, ajudando você a monitorar e administrar seu tempo de maneira eficiente e divertida. Com ele, você mantém a produtividade em alta enquanto avança nas suas metas por meio de relatórios e recompensas.  
 Atualmente, o projeto está em fase inicial, mas novas funcionalidades estão a caminho!
