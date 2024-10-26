@@ -2,6 +2,7 @@ import { Container } from "../components/Container";
 import Image from "next/image";
 import hero from "@/assets/homehero.svg";
 import { Footer } from "../components/Footer";
+import { HomeFaq } from "../components/HomeFaq";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
           </h2>
           <Image src={hero} alt="Hero" priority />
         </main>
+        <HomeFaq />
       </Container>
       <Footer />
     </>
