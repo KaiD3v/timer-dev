@@ -28,8 +28,8 @@ export async function DashboardHeader() {
           </ul>
         )}
         {categories.length === 0 && (
-          <p>
-            Você ainda não criou nenhum categoria, clique no ícone a direita
+          <p className="text-white font-semibold">
+            Você ainda não criou nenhuma categoria, clique no ícone a direita
             para adicionar uma nova.
           </p>
         )}
