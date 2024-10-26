@@ -3,6 +3,7 @@ import Image from "next/image";
 import hero from "@/assets/homehero.svg";
 import { Footer } from "../components/Footer";
 import { HomeFaq } from "../components/HomeFaq";
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function Home() {
   return (
@@ -14,6 +15,12 @@ export default function Home() {
             <span className="text-blue-600">conquiste seus projetos.</span>
           </h2>
           <Image src={hero} alt="Hero" priority />
+          <a className="mt-5" href="#faq">
+            <IoIosArrowDown
+              className="text-gray-700 animate-bounce duration-500 cursor-pointer"
+              size={26}
+            />
+          </a>
         </main>
         <HomeFaq />
       </Container>

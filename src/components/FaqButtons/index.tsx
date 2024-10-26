@@ -15,7 +15,7 @@ export function FaqButton({ title, description }: FaqButtonProps) {
     setIsOpen(!isOpen);
   }
   return (
-    <div className="flex flex-col w-full gap-1">
+    <div id="faq" className="flex flex-col w-full gap-1">
       <hr className="w-full border-gray-300" />
       <button
         onClick={handleToggleButton}
