@@ -29,15 +29,15 @@ Atualmente, o projeto está em fase inicial, mas novas funcionalidades estão a 
    git clone https://github.com/KaiD3v/timer-dev.git
    cd timerdev
    ```
-2. Instale as dependências:
+2. Configure a sua .env local conforme o arquivo **.env.example**
+3. Faça a build do Container Docker:
    ```bash
-   npm install
+   docker build -t docker-timerdev .
    ```
-3. Configure a sua .env local conforme o arquivo **.env.example**
-4. Inicie o servidor de desenvolvimento:
-   ```bash
-   npm run dev
-   ```
+4. Inicie o container:
+```bash
+   docker run -p 3000:3000 --name docker-timerdev timer-dev
+``` 
 5. Acesse no navegador:
    ```
    http://localhost:3000
