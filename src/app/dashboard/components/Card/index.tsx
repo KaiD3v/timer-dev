@@ -24,7 +24,7 @@ export function DashboardCard({ project }: ProjectCardProps) {
         <h1 className="text-2xl font-bold mb-2">{project.name}</h1>
         <p className="text-lg text-gray-700 font-medium">
           {" "}
-          {formatTime(project.timer || 0)}h
+          {formatTime(project.timer || 0)}
         </p>
         <div className="mt-4">
           <button
