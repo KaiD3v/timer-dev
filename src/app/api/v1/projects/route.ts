@@ -3,6 +3,33 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../lib/auth";
 import { NextResponse } from "next/server";
 
+export async function DELETE(request: Request) {
+  const session = await getServerSession(authOptions);
+  if (!session || !session.user) {
+    return NextResponse.json({ error: "Unauthorized " }, { status: 401 });
+  }
+
+  const { id, userId } = await request.json();
+  if (userId !== session?.user?.id) {
+    return NextResponse.json({ error: "Unauthorized " }, { status: 401 });
+  }
+
+  try {
+    await prismaClient.project.delete({ where: { id } });
+
+    return NextResponse.json(
+      { deleted: "Projeto deletado com sucesso!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error while delte project: ", error);
+    return NextResponse.json(
+      { error: "Error while delete project" },
+      { status: 501 }
+    );
+  }
+}
+
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
   if (!session || !session.user) {

@@ -4,8 +4,6 @@ import { useContext } from "react";
 import { formatTime } from "../../../../functions/formatTime";
 import { ProjectProps } from "../../../../utils/project.type";
 import { ModalContext } from "../../../../providers/modal";
-import { FiTrash } from "react-icons/fi";
-import { CiSettings } from "react-icons/ci";
 import { SettingsButton } from "../SettingsButton";
 
 interface ProjectCardProps {
@@ -26,7 +24,7 @@ export function DashboardCard({ project }: ProjectCardProps) {
       <section className="flex flex-col bg-white rounded-lg p-4 w-full text-center justify-center items-center shadow-md">
         <header className="flex relative w-full justify-center items-center">
           <h1 className="text-2xl font-bold mb-2">{project.name}</h1>
-          <SettingsButton />
+          <SettingsButton project={project} />
         </header>
         <p className="text-lg text-gray-700 font-medium">
           {" "}
