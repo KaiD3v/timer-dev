@@ -5,7 +5,6 @@ import { Header } from "../components/Header";
 import { AuthProvider } from "../providers/auth";
 import { ModalProvider } from "../providers/modal";
 import { Toaster } from "sonner";
-import { ThemeProvider } from "../providers/theme";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -62,20 +61,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const theme =
+    typeof window !== "undefined" ? localStorage.getItem("theme") : null;
+
   return (
     <html lang="pt-br">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>
-          <ModalProvider>
-            <AuthProvider>
-              <Header />
-              {children}
-              <Toaster />
-            </AuthProvider>
-          </ModalProvider>
-        </ThemeProvider>
+        <ModalProvider>
+          <AuthProvider>
+            <Header />
+            {children}
+            <Toaster />
+          </AuthProvider>
+        </ModalProvider>
       </body>
     </html>
   );

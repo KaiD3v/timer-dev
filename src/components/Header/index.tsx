@@ -8,7 +8,6 @@ import { AiOutlineLoading } from "react-icons/ai";
 import { BiExit } from "react-icons/bi";
 import { IoEnterOutline } from "react-icons/io5";
 import { MdDashboardCustomize } from "react-icons/md";
-import { ThemeButton } from "../ThemeButton";
 import { CgProfile } from "react-icons/cg";
 
 export function Header() {
@@ -71,7 +70,6 @@ export function Header() {
                       Perfil
                       </span>
                     </Link>
-                    <ThemeButton />
                     <button
                       onClick={handleExit}
                       className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
