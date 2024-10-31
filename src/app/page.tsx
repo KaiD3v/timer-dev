@@ -1,6 +1,6 @@
 import { Container } from "../components/Container";
 import Image from "next/image";
-import hero from "@/assets/homehero.svg";
+import hero from "@/assets/homehero2.svg";
 import { Footer } from "../components/Footer";
 import { HomeFaq } from "../components/HomeFaq";
 import { IoIosArrowDown } from "react-icons/io";

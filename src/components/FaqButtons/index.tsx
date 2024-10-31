@@ -15,19 +15,21 @@ export function FaqButton({ title, description }: FaqButtonProps) {
     setIsOpen(!isOpen);
   }
   return (
-    <div id="faq" className="flex flex-col w-full gap-1">
+    <div id="faq" className="dark:text-white flex flex-col w-full gap-1">
       <hr className="w-full border-gray-300" />
       <button
         onClick={handleToggleButton}
         className="flex w-full rounded justify-between items-center p-4 hover:bg-slate-300/50 ease-out duration-100"
       >
-        <span className="font-bold text-gray-700 text-xl">{title}</span>
+        <span className="font-bold dark:text-white text-gray-700 text-xl">
+          {title}
+        </span>
         {!isOpen && <IoIosArrowDown size={26} />}
         {isOpen && <IoIosArrowUp size={26} />}
       </button>
       {isOpen && (
         <section className="ml-4">
-          <p className="text-gray-600">{description}</p>
+          <p className="dark:text-white text-gray-600">{description}</p>
         </section>
       )}
     </div>

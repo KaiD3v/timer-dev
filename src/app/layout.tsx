@@ -5,6 +5,7 @@ import { Header } from "../components/Header";
 import { AuthProvider } from "../providers/auth";
 import { ModalProvider } from "../providers/modal";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -66,13 +67,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ModalProvider>
-          <AuthProvider>
-            <Header />
-            {children}
-            <Toaster />
-          </AuthProvider>
-        </ModalProvider>
+        <ThemeProvider attribute="class">
+          <ModalProvider>
+            <AuthProvider>
+              <Header />
+              {children}
+              <Toaster />
+            </AuthProvider>
+          </ModalProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

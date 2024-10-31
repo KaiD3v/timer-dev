@@ -6,8 +6,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import { BiExit } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
 import { IoEnterOutline } from "react-icons/io5";
 import { MdDashboardCustomize } from "react-icons/md";
+import { ThemeButton } from "../ThemeButton";
+import { useTheme } from "next-themes";
 
 export function Header() {
   const { data, status } = useSession();
@@ -59,13 +62,17 @@ export function Header() {
                 />
 
                 {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-md shadow-lg">
+                  <div className={`menu absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-md shadow-lg`}>
                     <Link
                       href="/profile"
-                      className="block px-4 py-2 hover:bg-gray-100"
+                      className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
                     >
-                      Perfil
+                      <CgProfile size={20}/>
+                      <span>
+                        Perfil
+                      </span>
                     </Link>
+                    <ThemeButton />
                     <button
                       onClick={handleExit}
                       className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
