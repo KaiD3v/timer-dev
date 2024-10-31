@@ -8,6 +8,8 @@ import { AiOutlineLoading } from "react-icons/ai";
 import { BiExit } from "react-icons/bi";
 import { IoEnterOutline } from "react-icons/io5";
 import { MdDashboardCustomize } from "react-icons/md";
+import { ThemeButton } from "../ThemeButton";
+import { CgProfile } from "react-icons/cg";
 
 export function Header() {
   const { data, status } = useSession();
@@ -62,10 +64,14 @@ export function Header() {
                   <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-md shadow-lg">
                     <Link
                       href="/profile"
-                      className="block px-4 py-2 hover:bg-gray-100"
+                      className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
                     >
+                      <CgProfile size={20} />
+                      <span>
                       Perfil
+                      </span>
                     </Link>
+                    <ThemeButton />
                     <button
                       onClick={handleExit}
                       className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
