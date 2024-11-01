@@ -42,7 +42,7 @@ export function SettingsButton({ project }: ProjectCardProps) {
         onClick={toggleMenu}
       />
       {isMenuOpened && (
-        <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg p-2 z-10 animate-fade-in">
+        <div className="menu absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg p-2 z-10 animate-fade-in">
           <ul className="space-y-2">
             <li
               onClick={handleDelete}

@@ -33,18 +33,22 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
     });
 
     router.refresh();
-    toast.success("Projeto criado com sucesso!", { style: { background: "lime", color: "white" } });
+    toast.success("Projeto criado com sucesso!", {
+      style: { background: "lime", color: "white" },
+    });
     router.replace(`/dashboard/category/${data.category}`);
   }
 
   return (
     <form
       onSubmit={handleSubmit(handleRegisterProject)}
-      className="flex flex-col bg-white shadow-lg rounded-lg p-6 max-w-3xl w-full mt-11"
+      className="flex flex-col bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 max-w-3xl w-full mt-11"
     >
       <header className="mb-4">
-        <h1 className="text-2xl font-semibold text-gray-800">Novo Projeto</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
+          Novo Projeto
+        </h1>
+        <p className="text-gray-600 dark:text-gray-400">
           Adicione um novo projeto para se dedicar!
         </p>
       </header>
@@ -52,30 +56,35 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
             Nome do Projeto
           </label>
           <input
             type="text"
             placeholder="Digite o nome do seu projeto"
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="mt-1 block w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100"
             {...register("name")}
             required
           />
           {errors.name && (
-            <span className="text-red-500 text-sm">{errors.name.message}</span>
+            <span className="text-red-500 text-sm dark:text-red-400">
+              {errors.name.message}
+            </span>
           )}
         </div>
         <div>
-          <label htmlFor="category" className="block font-semibold text-sm">
+          <label
+            htmlFor="category"
+            className="block font-semibold text-sm text-gray-700 dark:text-gray-300"
+          >
             Categoria do Projeto
           </label>
           {categories.length === 0 && (
-            <p>
+            <p className="text-gray-600 dark:text-gray-400">
               Nenhuma categoria encontrada,{" "}
               <Link
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
                 href="/dashboard/category/new"
               >
                 cadastre uma.
@@ -84,25 +93,29 @@ export function NewProjectForm({ categories }: CategoryFormProps) {
           )}
           {categories.length > 0 && (
             <select
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-1 block w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100"
               {...register("category")}
             >
               {categories.map((category) => (
-                <option key={category.id} value={category.id}>
+                <option
+                  key={category.id}
+                  value={category.id}
+                  className="text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800"
+                >
                   {category.name}
                 </option>
               ))}
             </select>
           )}
           {errors.category && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 text-sm dark:text-red-400">
               {errors.category.message}
             </span>
           )}
         </div>
         <button
           type="submit"
-          className="mt-4 w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+          className="mt-4 w-full bg-blue-600 dark:bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 transition duration-200"
         >
           Criar
         </button>
