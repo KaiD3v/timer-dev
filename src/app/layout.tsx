@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   title: "TimerDev - Track you're time, achieve you're projects.",
   description:
     "Uma aplicação para rastrear o tempo dedicado a atividades produtivas.",
+    verification: {google: "Wu7OVsB2QBXpjUEeqrQYbKkTUJ4ubIaXLPvpND1qRTY"},
   keywords: [
     "timer",
     "timer dev",
