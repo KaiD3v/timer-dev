@@ -28,8 +28,8 @@ export function Header() {
   }
 
   return (
-    <header className="flex items-center w-full justify-center h-20 shadow-lg">
-      <section className="flex pl-4 lg:pl-0 items-center justify-between w-full max-w-[1080px]">
+    <header className="flex items-center justify-center h-20 shadow-lg">
+      <section className="flex items-center mx-4 justify-between w-full max-w-[1080px]">
         <div className="flex items-center hover:tracking-widest duration-300">
           <Link href={"/"}>
             <h1 className="text-2xl font-bold">
@@ -37,18 +37,15 @@ export function Header() {
             </h1>
           </Link>
         </div>
-        <div className="flex items-center justify-center pr-4 lg:pr-0 lg- gap-4 relative">
+        <div className="flex items-center justify-center gap-4 relative">
           {status === "authenticated" && (
             <>
-              <div className="flex items-end cursor-pointer">
-                <MdDashboardCustomize size={32} />
-                <Link
-                  className="text-lg font-semibold hover:tracking-widest duration-300"
-                  href={"/dashboard"}
-                >
-                  Dashboard
-                </Link>
-              </div>
+              <Link
+                className="text-lg font-semibold hover:tracking-widest duration-300 flex items-center gap-2"
+                href={"/dashboard"}
+              >
+                <MdDashboardCustomize size={32} /> Dashboard
+              </Link>
 
               <div className="relative">
                 <Image
@@ -85,14 +82,14 @@ export function Header() {
           )}
 
           {status === "unauthenticated" && (
-            <div className="flex pr-4 lg:pr-0 items-end cursor-pointer hover:text-green-600 duration-300 ease-in-out">
-              <IoEnterOutline size={32} />
+            <div className="flex items-center gap-2 cursor-pointer hover:text-green-600 duration-300 ease-in-out">
               <button onClick={handleLogin}>Entrar</button>
+              <IoEnterOutline size={32} />
             </div>
           )}
 
           {status === "loading" && (
-            <div className="flex pr-4 lg:pr-0 items-center cursor-pointer duration-300 ease-in-out">
+            <div className="cursor-pointer duration-300 ease-in-out">
               <AiOutlineLoading className="animate-spin" size={32} />
             </div>
           )}

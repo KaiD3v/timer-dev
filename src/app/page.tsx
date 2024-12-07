@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <Container>
         <main className="flex flex-col w-full min-h-[calc(100vh-80px)] items-center justify-center">
-          <h2 className="flex flex-col text-2xl font-semibold">
+          <h2 className="flex flex-col text-2xl font-semibold text-center">
             Controle seu tempo,{" "}
             <span className="text-blue-600">conquiste seus projetos.</span>
           </h2>
