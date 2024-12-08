@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD npx prisma generate && npm run dev
+CMD ["/bin/bash", "./.infra/start.sh"]

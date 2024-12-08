@@ -1,0 +1,87 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: app
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=mongodb://mongo1:27017,mongo2:27017,mongo3:27017/timerdev?replicaSet=rs0
+    depends_on:
+      mongo-setup:
+        condition: service_completed_successfully
+    networks:
+      - app-network
+
+  mongo1:
+    image: mongo:6.0
+    container_name: mongo1
+    command: ["mongod", "--replSet", "rs0", "--bind_ip", "0.0.0.0"]
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+    volumes:
+      - mongo1-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongo2:
+    image: mongo:6.0
+    container_name: mongo2
+    command: ["mongod", "--replSet", "rs0", "--bind_ip", "0.0.0.0"]
+    ports:
+      - "27018:27017"
+    networks:
+      - app-network
+    volumes:
+      - mongo2-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongo3:
+    image: mongo:6.0
+    container_name: mongo3
+    command: ["mongod", "--replSet", "rs0", "--bind_ip", "0.0.0.0"]
+    ports:
+      - "27019:27017"
+    networks:
+      - app-network
+    volumes:
+      - mongo3-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongo-setup:
+    image: mongo:6.0
+    container_name: mongo-setup
+    volumes:
+      - ./.infra/mongo-setup.sh:/mongo-setup.sh
+    depends_on:
+      mongo1:
+        condition: service_healthy
+      mongo2:
+        condition: service_healthy
+      mongo3:
+        condition: service_healthy
+    networks:
+      - app-network
+    entrypoint: ["bash", "/mongo-setup.sh"]
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo1-data:
+  mongo2-data:
+  mongo3-data:

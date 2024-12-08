@@ -38,6 +38,13 @@ Atualmente, o projeto está em fase inicial, mas novas funcionalidades estão a 
 ```bash
    docker run -p 3000:3000 --name docker-timerdev timer-dev
 ``` 
+ou o ambiente completo utilizando o Compose
+```bash
+   # Diretamente com o Compose
+   docker compose up -d 
+   # Utilizando a Makefile
+   make up
+```
 5. Acesse no navegador:
    ```
    http://localhost:3000
